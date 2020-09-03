@@ -22,7 +22,12 @@ export default function GitCommit({ state, gitState, setGitState }) {
           }
         };
 
-        setGitState({ ...gitState, waitingResult: "Submitting..." });
+        setGitState({
+          ...gitState,
+          waitingResult: "Submitting...",
+          commitResult: null
+        });
+
         fetch("https://rankingselfserve.azurewebsites.net/Git/CommitToGit", {
           method: "POST",
           body: JSON.stringify(data),
@@ -32,8 +37,12 @@ export default function GitCommit({ state, gitState, setGitState }) {
         })
           .then((response) => response.json())
           .then((json) => {
-            setGitState({ ...gitState, waitingResult: null });
-            setGitState({ ...gitState, commitResult: json });
+            setGitState({
+              ...gitState,
+              waitingResult: null,
+              commitResult: json
+            });
+            // setGitState({ ...gitState });
           });
       }
     }

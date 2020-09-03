@@ -1,10 +1,16 @@
 import capitalize from "capitalize-first-letter";
 import React from "react";
+import { ProgressBar } from "react-bootstrap";
 
 export default function GitResult(props) {
   return (
     <>
-      <div>{props.state.waitingResult}</div>
+      {props.state.waitingResult ? (
+        <>
+          <div>{props.state.waitingResult}</div>
+          <ProgressBar animated now={60} />
+        </>
+      ) : null}
       <div>
         {props.state.commitResult ? (
           <>
@@ -18,7 +24,7 @@ export default function GitResult(props) {
                     {props.state.commitResult[key]}
                   </a>
                 ) : (
-                  <label>{props.state.commitResult[key]}</label>
+                  <label>{capitalize(props.state.commitResult[key])}</label>
                 )}
               </div>
             ))}

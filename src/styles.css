@@ -90,3 +90,6 @@ textarea {
   /* border: 1px solid pink; */
   margin-top: 15px;
 }
+.progress {
+  width: 75%;
+}
