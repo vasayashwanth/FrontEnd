@@ -81,6 +81,7 @@ export default function AddNew() {
             "\t" +
             this.value.substring(this.selectionEnd);
           this.selectionEnd = s + 1;
+          handleChangeGroup(e);
         }
       };
     }
@@ -204,6 +205,7 @@ export default function AddNew() {
   }
 
   function handleChangeGroup(event) {
+    console.log("handleChanged");
     let currentid = getParentId(event);
     if (currentid == null) throw console.error("No parent id found");
 
