@@ -9,8 +9,11 @@ const rootElement = document.getElementById("root");
 ReactDOM.render(
   <React.StrictMode>
     <nav className="navbar navbar-dark bg-primary">
-      <a href="/">Reauthorize</a>
+      <a href="/" className="headings">
+        Reauthorize
+      </a>
       <a
+        className="headings"
         href="#"
         onClick={() => {
           Theme();

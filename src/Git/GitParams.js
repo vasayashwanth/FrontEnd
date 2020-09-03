@@ -14,7 +14,11 @@ export default function GitParams(props) {
               : Math.max(10, props.state.commitMessage.length + 1)
           }
           onChange={(e) =>
-            props.setState({ ...props.state, commitMessage: e.target.value })
+            props.setState({
+              ...props.state,
+              commitMessage: e.target.value
+              // isCommited: false
+            })
           }
           value={props.state.commitMessage}
         />
@@ -28,7 +32,11 @@ export default function GitParams(props) {
               : Math.max(10, props.state.branchName.length + 1)
           }
           onChange={(e) =>
-            props.setState({ ...props.state, branchName: e.target.value })
+            props.setState({
+              ...props.state,
+              branchName: e.target.value
+              // isCommited: false
+            })
           }
           value={props.state.branchName}
         />
@@ -52,7 +60,8 @@ export default function GitParams(props) {
             onChange={() =>
               props.setState({
                 ...props.state,
-                isPullRequestNeeded: !props.state.isPullRequestNeeded
+                isPullRequestNeeded: !props.state.isPullRequestNeeded,
+                isCommited: false
               })
             }
             checked={props.state.isPullRequestNeeded}
