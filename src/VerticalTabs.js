@@ -5,7 +5,7 @@ import Markets from "./Markets/Markets";
 export default function VerticalTabs() {
   return (
     <>
-      <Tab.Container transition={false} defaultActiveKey="first">
+      <Tab.Container transition={false} defaultActiveKey="second">
         <Row>
           <Col md="auto">
             <Nav variant="pills" className="flex-column">
