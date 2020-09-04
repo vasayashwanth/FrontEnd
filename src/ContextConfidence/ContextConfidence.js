@@ -5,10 +5,10 @@ import AddNew from "./AddNew";
 export default function ContextConfidence() {
   return (
     <Tabs defaultActiveKey="1" transition={false} className="horizontal-tabs">
-      <Tab eventKey="1" className="headings" title="Add New">
+      <Tab eventKey="1" className="headings" title="Add New Config">
         <AddNew />
       </Tab>
-      <Tab eventKey="2" className="headings" title="Query">
+      <Tab eventKey="2" className="headings" title="Query Config">
         <br />
         <h3>Coming Soon!!!</h3>
       </Tab>

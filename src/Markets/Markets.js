@@ -5,7 +5,7 @@ import GetPipeline from "./GetPipeline";
 
 export default function Markets() {
   return (
-    <Tabs defaultActiveKey="2" transition={false} className="horizontal-tabs">
+    <Tabs defaultActiveKey="1" transition={false} className="horizontal-tabs">
       <Tab eventKey="1" className="headings" title="Get Markets">
         <GetMarkets />
       </Tab>

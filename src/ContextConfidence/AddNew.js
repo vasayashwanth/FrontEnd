@@ -3,7 +3,7 @@ import StructuredEditor from "./StructuredEditor";
 import TextEditor from "./TextEditor";
 // import $ from "jquery";
 import * as constants from "./ContextConfidenceConstants";
-import GitCommit from "../Git/GitCommit";
+import Git from "../Git/Git";
 
 // import Cookie from "js-cookie";
 
@@ -408,7 +408,7 @@ export default function AddNew() {
       <br />
 
       <hr />
-      <GitCommit
+      <Git
         state={structured ? rowState : grouptoRow(groupState)}
         gitState={gitState}
         setGitState={setGitState}
@@ -418,7 +418,6 @@ export default function AddNew() {
       <br />
       <br />
       <br />
-      {/* <React.Fragment>{JSON.stringify(rowState, null, 2)}</React.Fragment>  */}
     </>
   );
 }
