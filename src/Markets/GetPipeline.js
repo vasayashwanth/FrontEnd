@@ -1,41 +1,18 @@
 import React, { useEffect, useState } from "react";
 import JsonResult from "../JsonResult";
-import * as constants from "../Constants";
+
 import * as requestUrls from "../RequestUrls";
+import fetchData from "../FetchData";
 
 export default function GetPipeline() {
   const [state, setState] = useState("");
   const [resultState, setResultState] = useState(null);
-  const [waitingState, setWaitingState] = useState(null);
 
   const textRef = React.useRef();
 
   useEffect(() => {
-    function fetchData() {
-      let data = {
-        AccessToken: constants.accessToken,
-        GitParameters: {
-          gitRepoName: constants.defaultRepo
-        },
-        market: state
-      };
-      setResultState(null);
-      setWaitingState("Submitting...");
-
-      fetch(requestUrls.GetPipelineUrl, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          setWaitingState(null);
-          setResultState(json);
-        });
-    }
-    if (state) fetchData();
+    if (state)
+      fetchData({ market: state }, setResultState, requestUrls.GetPipelineUrl);
   }, [state]);
 
   return (
@@ -55,7 +32,7 @@ export default function GetPipeline() {
       </div>
       <br />
       <hr />
-      <JsonResult waitingState={waitingState} resultState={resultState} />
+      <JsonResult resultState={resultState} />
     </>
   );
 }

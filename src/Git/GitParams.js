@@ -1,6 +1,11 @@
 import React from "react";
 
-export default function GitParams(props) {
+export default function GitParams({
+  rowState,
+  gitParamsState,
+  setGitParamsState,
+  setRowStateOnSubmit
+}) {
   return (
     <>
       <div className="configLine">
@@ -9,36 +14,40 @@ export default function GitParams(props) {
           type="text"
           id="commitMessage"
           size={
-            props.state.commitMessage === null
+            gitParamsState.commitMessage === null
               ? 10
-              : Math.max(10, props.state.commitMessage.length + 1)
+              : Math.max(10, gitParamsState.commitMessage.length + 1)
           }
           onChange={(e) =>
-            props.setState({ ...props.state, commitMessage: e.target.value })
+            setGitParamsState({
+              ...gitParamsState,
+              commitMessage: e.target.value
+            })
           }
-          value={props.state.commitMessage}
+          value={gitParamsState.commitMessage}
         />
         <label htmlFor="branch">Branch Name</label>
         <input
           type="text"
           id="branch"
           size={
-            props.state.branchName === null
+            gitParamsState.branchName === null
               ? 10
-              : Math.max(10, props.state.branchName.length + 1)
+              : Math.max(10, gitParamsState.branchName.length + 1)
           }
           onChange={(e) =>
-            props.setState({ ...props.state, branchName: e.target.value })
+            setGitParamsState({ ...gitParamsState, branchName: e.target.value })
           }
-          value={props.state.branchName}
+          value={gitParamsState.branchName}
         />
       </div>
       <div className="configLine">
         <button
           className="btn btn-primary"
-          disabled={props.state.isCommited}
+          // disabled={gitParamsState.isCommited}
           onClick={() => {
-            props.setState({ ...props.state, isCommited: true });
+            //setGitParamsState({ ...gitParamsState, isCommited: true });
+            setRowStateOnSubmit({ gitParams: gitParamsState, rows: rowState });
           }}
         >
           Commit
@@ -50,12 +59,12 @@ export default function GitParams(props) {
             name={"pr"}
             type="checkbox"
             onChange={() =>
-              props.setState({
-                ...props.state,
-                isPullRequestNeeded: !props.state.isPullRequestNeeded
+              setGitParamsState({
+                ...gitParamsState,
+                isPullRequestNeeded: !gitParamsState.isPullRequestNeeded
               })
             }
-            checked={props.state.isPullRequestNeeded}
+            checked={gitParamsState.isPullRequestNeeded}
           />
 
           <label className="custom-control-label" htmlFor={"pr"}>
@@ -70,21 +79,21 @@ export default function GitParams(props) {
             name={"repo"}
             type="checkbox"
             onChange={() =>
-              props.state.gitRepoName === "ConfigDataDummy"
-                ? props.setState({
-                    ...props.state,
+              gitParamsState.gitRepoName === "ConfigDataDummy"
+                ? setGitParamsState({
+                    ...gitParamsState,
                     gitRepoName: "SatoriData"
                   })
-                : props.setState({
-                    ...props.state,
+                : setGitParamsState({
+                    ...gitParamsState,
                     gitRepoName: "ConfigDataDummy"
                   })
             }
-            checked={props.state.gitRepoName === "ConfigDataDummy"}
+            checked={gitParamsState.gitRepoName === "ConfigDataDummy"}
           />
 
           <label className="custom-control-label" htmlFor={"repo"}>
-            Repo : {props.state.gitRepoName}
+            Repo : {gitParamsState.gitRepoName}
           </label>
         </div>
       </div>

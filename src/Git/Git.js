@@ -1,57 +1,40 @@
 import React, { useState, useEffect } from "react";
 import GitParams from "./GitParams";
 import JsonResult from "../JsonResult";
-import * as constants from "../Constants";
+import fetchData from "../FetchData";
 import * as requestUrls from "../RequestUrls";
 
-export default function Git({ state, gitState, setGitState }) {
+export default function Git({ rowState, gitParamsState, setGitParamsState }) {
   const [resultState, setResultState] = useState(null);
-  const [waitingState, setWaitingState] = useState(null);
+  const [rowStateOnSubmit, setRowStateOnSubmit] = useState(null);
 
   useEffect(() => {
-    function fetchData() {
-      if (gitState.isCommited) {
-        let data = {
-          AccessToken: constants.accessToken,
-          GitParameters: {
-            gitRepoName: gitState.gitRepoName,
-            branchName: gitState.branchName,
-            createPullRequest: gitState.isPullRequestNeeded,
-            commitMessage: gitState.commitMessage
-          },
-          ContextConfidenceConfig: {
-            configLines: state
-          }
-        };
-
-        setResultState(null);
-        setWaitingState("Submitting...");
-        fetch(requestUrls.CommitToGitUrl, {
-          method: "POST",
-          body: JSON.stringify(data),
-          headers: {
-            "Content-type": "application/json; charset=UTF-8"
-          }
-        })
-          .then((response) => response.json())
-          .then((json) => {
-            setGitState({
-              ...gitState,
-              isCommited: false
-            });
-            setWaitingState(null);
-            setResultState(json);
-          });
-      }
+    if (rowStateOnSubmit) {
+      let data = {
+        GitParameters: {
+          gitRepoName: rowStateOnSubmit.gitParams.gitRepoName,
+          branchName: rowStateOnSubmit.gitParams.branchName,
+          createPullRequest: rowStateOnSubmit.gitParams.isPullRequestNeeded,
+          commitMessage: rowStateOnSubmit.gitParams.commitMessage
+        },
+        ContextConfidenceConfig: {
+          configLines: rowStateOnSubmit.rows
+        }
+      };
+      fetchData(data, setResultState, requestUrls.CommitToGitUrl);
     }
-    if (state) fetchData();
-  }, [gitState.isCommited]);
+  }, [rowStateOnSubmit]);
 
   return (
     <>
-      <GitParams state={gitState} setState={setGitState} />
+      <GitParams
+        rowState={rowState}
+        gitParamsState={gitParamsState}
+        setGitParamsState={setGitParamsState}
+        setRowStateOnSubmit={setRowStateOnSubmit}
+      />
       <hr />
-      <JsonResult waitingState={waitingState} resultState={resultState} />
+      <JsonResult resultState={resultState} />
     </>
   );
 }

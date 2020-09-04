@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import JsonResult from "../JsonResult";
-import * as constants from "../Constants";
 import * as requestUrls from "../RequestUrls";
+import fetchData from "../FetchData";
 
 const pipelines = [
   "p0",
@@ -16,35 +16,10 @@ const pipelines = [
 export default function GetMarkets() {
   const [state, setState] = useState("p0");
   const [resultState, setResultState] = useState(null);
-  const [waitingState, setWaitingState] = useState(null);
 
   useEffect(() => {
-    function fetchData() {
-      let data = {
-        AccessToken: constants.accessToken,
-        GitParameters: {
-          gitRepoName: constants.defaultRepo
-        },
-        pipeline: state
-      };
-
-      setResultState(null);
-      setWaitingState("Submitting...");
-
-      fetch(requestUrls.GetMarketsUrl, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: {
-          "Content-type": "application/json; charset=UTF-8"
-        }
-      })
-        .then((response) => response.json())
-        .then((json) => {
-          setWaitingState(null);
-          setResultState(json);
-        });
-    }
-    if (state) fetchData();
+    if (state)
+      fetchData({ pipeline: state }, setResultState, requestUrls.GetMarketsUrl);
   }, [state]);
 
   return (
@@ -67,7 +42,7 @@ export default function GetMarkets() {
       ))}
       <br />
       <hr />
-      <JsonResult waitingState={waitingState} resultState={resultState} />
+      <JsonResult resultState={resultState} />
     </div>
   );
 }

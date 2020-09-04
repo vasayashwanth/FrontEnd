@@ -54,7 +54,7 @@ export default function AddNew() {
       lines: [{ ...constants.defaultGroupLine, id: CreateUUID() }]
     }
   ];
-  const initialGitState = {
+  const initialGitParamsState = {
     ...constants.gitParams,
     branchName: constants.gitParams.branchName + getCurrentTimeStamp()
   };
@@ -66,7 +66,7 @@ export default function AddNew() {
   ]);
   const [structured, setStructured] = useLocalStorageState("structured", true);
 
-  const [gitState, setGitState] = useState(initialGitState);
+  const [gitParamsState, setGitParamsState] = useState(initialGitParamsState);
   //For tabs in textarea
   useEffect(() => {
     var textareas = document.getElementsByTagName("textarea");
@@ -255,7 +255,7 @@ export default function AddNew() {
     setGroupState([...initialGroupState]);
     setRowState([...initialRowState]);
     setStructured(true);
-    setGitState(initialGitState);
+    setGitParamsState(initialGitParamsState);
   }
 
   //Row handlers
@@ -409,9 +409,9 @@ export default function AddNew() {
 
       <hr />
       <Git
-        state={structured ? rowState : grouptoRow(groupState)}
-        gitState={gitState}
-        setGitState={setGitState}
+        rowState={structured ? rowState : grouptoRow(groupState)}
+        gitParamsState={gitParamsState}
+        setGitParamsState={setGitParamsState}
       />
       <br />
       <br />
