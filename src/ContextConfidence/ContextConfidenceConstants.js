@@ -42,7 +42,7 @@ export const defaultGroupValues = {
   lines: [defaultGroupLine]
 };
 
-export const gitParams = {
+export const defaultGitParams = {
   commitMessage: "This is a sample commit message",
   isCommited: false,
   isPullRequestNeeded: true,

@@ -22,7 +22,7 @@ export default function VerticalTabs() {
                 <Nav.Link eventKey="fourth">Source selection</Nav.Link>
               </Nav.Item>
               <Nav.Item>
-                <Nav.Link eventKey="fourth">Declarative Ranker</Nav.Link>
+                <Nav.Link eventKey="fifth">Declarative Ranker</Nav.Link>
               </Nav.Item>
             </Nav>
           </Col>

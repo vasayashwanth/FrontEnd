@@ -14,7 +14,7 @@ ReactDOM.render(
       </a>
       <a
         className="headings"
-        href="#"
+        href="/#"
         onClick={() => {
           Theme();
           return false;
