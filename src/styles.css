@@ -56,7 +56,7 @@ button {
   font-size: 14px;
 }
 .input-text-field {
-  border-color: rgba(210, 210, 210, 0.5);
+  border-color: rgba(210, 210, 210);
   border-width: 1px;
   border-radius: 5px;
 }
@@ -67,7 +67,7 @@ button {
 
 textarea {
   vertical-align: bottom;
-  width: 900px;
+  width: 1000px;
   margin: 5px;
 }
 

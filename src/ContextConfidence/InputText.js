@@ -10,8 +10,8 @@ export default function InputText(props) {
         id={props.id}
         size={
           props.data === null || props.data === "undefined"
-            ? 10
-            : Math.max(10, props.data.toString().length + 1)
+            ? 8
+            : Math.max(8, props.data.toString().length + 1)
         }
         name={props.name}
         type="text"

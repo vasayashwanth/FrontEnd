@@ -11,6 +11,7 @@ export default function GitParams({
       <div className="configLine">
         <label htmlFor="commitMessage">Commit Message</label>
         <input
+          className="input-text-field"
           type="text"
           id="commitMessage"
           size={
@@ -28,6 +29,7 @@ export default function GitParams({
         />
         <label htmlFor="branch">Branch Name</label>
         <input
+          className="input-text-field"
           type="text"
           id="branch"
           size={
