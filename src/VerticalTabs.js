@@ -2,6 +2,7 @@ import React from "react";
 import { Tab, Row, Col, Nav } from "react-bootstrap";
 import ContextConfidence from "./ContextConfidence/ContextConfidence";
 import Markets from "./Markets/Markets";
+import History from "./History";
 export default function VerticalTabs() {
   return (
     <>
@@ -9,9 +10,9 @@ export default function VerticalTabs() {
         <Row>
           <Col md="auto">
             <Nav variant="pills" className="flex-column">
-              <Nav.Item>
+              {/* <Nav.Item>
                 <Nav.Link eventKey="first">Markets</Nav.Link>
-              </Nav.Item>
+              </Nav.Item> */}
               <Nav.Item>
                 <Nav.Link eventKey="second">Context Confidence</Nav.Link>
               </Nav.Item>
@@ -24,6 +25,9 @@ export default function VerticalTabs() {
               <Nav.Item>
                 <Nav.Link eventKey="fifth">Declarative Ranker</Nav.Link>
               </Nav.Item>
+              {/* <Nav.Item>
+                <Nav.Link eventKey="sixth">History</Nav.Link>
+              </Nav.Item> */}
             </Nav>
           </Col>
           <Col>
@@ -33,6 +37,9 @@ export default function VerticalTabs() {
               </Tab.Pane>
               <Tab.Pane eventKey="second">
                 <ContextConfidence />
+              </Tab.Pane>
+              <Tab.Pane eventKey="sixth" unmountOnExit={true}>
+                <History />
               </Tab.Pane>
             </Tab.Content>
           </Col>

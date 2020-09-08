@@ -19,7 +19,7 @@ export default function GetPipeline() {
     <>
       <br />
       <div className="configLine">
-        <label>Market:</label>
+        <label className="headings">Market:</label>
         <input ref={textRef} className="input-text-field" type="text" />
         <button
           className="btn btn-primary"
