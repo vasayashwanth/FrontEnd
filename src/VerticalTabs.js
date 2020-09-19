@@ -10,9 +10,9 @@ export default function VerticalTabs() {
         <Row>
           <Col md="auto">
             <Nav variant="pills" className="flex-column">
-              {/* <Nav.Item>
+              <Nav.Item>
                 <Nav.Link eventKey="first">Markets</Nav.Link>
-              </Nav.Item> */}
+              </Nav.Item>
               <Nav.Item>
                 <Nav.Link eventKey="second">Context Confidence</Nav.Link>
               </Nav.Item>
@@ -25,9 +25,9 @@ export default function VerticalTabs() {
               <Nav.Item>
                 <Nav.Link eventKey="fifth">Declarative Ranker</Nav.Link>
               </Nav.Item>
-              {/* <Nav.Item>
+              <Nav.Item>
                 <Nav.Link eventKey="sixth">History</Nav.Link>
-              </Nav.Item> */}
+              </Nav.Item>
             </Nav>
           </Col>
           <Col>
